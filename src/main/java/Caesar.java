@@ -10,7 +10,10 @@ public class Caesar {
             if ('x' == message.charAt(i) || 'y' == message.charAt(i) || 'z' == message.charAt(i) || 'Z' == message.charAt(i) || 'Y' == message.charAt(i) || 'X' == message.charAt(i)){
                 new_message = new_message + (char)(message.charAt(i) - 23);
             }
-            else if (' ' == message.charAt(i)) {
+            else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z')) {
+                new_message = new_message + (message.charAt(i));
+            }
+            else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
                 new_message = new_message + (message.charAt(i));
             }
             else {
@@ -30,9 +33,12 @@ public class Caesar {
             if ('a' == message.charAt(i) || 'b' == message.charAt(i) || 'c' == message.charAt(i) || 'A' == message.charAt(i) || 'B' == message.charAt(i) || 'C' == message.charAt(i)) {
                 new_message = new_message + (char)(message.charAt(i) + 23);
             }
-            else if (' ' == message.charAt(i)) {
+            else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z' && message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
                 new_message = new_message + (message.charAt(i));
             }
+            // else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
+                // new_message = new_message + (message.charAt(i));
+            // }
             else {
                 new_message = new_message + (char)(message.charAt(i) - 3);
             }
@@ -46,11 +52,16 @@ public class Caesar {
     public static String encryptCaesarKey(String message, int key) {
         String new_message = "";
         for (int i = 0; i < message.length(); i++) {
-            if ((char) ('z' - key) <= message.charAt(i) && ('z') >= message.charAt(i)) {
+            if ((char)('z' - key) <= message.charAt(i) && ('z') >= message.charAt(i)) {
                 new_message = new_message + (char) (message.charAt(i) - (26 - key));
-            } else if (' ' == message.charAt(i)) {
+            }
+            else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z')) {
                 new_message = new_message + (message.charAt(i));
-            } else {
+            }
+            else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
+                new_message = new_message + (message.charAt(i));
+            }
+            else {
                 new_message = new_message + (char) (message.charAt(i) + key);
             }
         }
@@ -66,7 +77,10 @@ public class Caesar {
                 if ((char)('a' + key) <= message.charAt(i) && ('a') >= message.charAt(i)) {
                     new_message = new_message + (char)(message.charAt(i) - (26 - key));
                 }
-                else if (' ' == message.charAt(i)) {
+                else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z')) {
+                    new_message = new_message + (message.charAt(i));
+                }
+                else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
                     new_message = new_message + (message.charAt(i));
                 }
                 else {
