@@ -10,14 +10,14 @@ public class Caesar {
             if ('x' == message.charAt(i) || 'y' == message.charAt(i) || 'z' == message.charAt(i) || 'Z' == message.charAt(i) || 'Y' == message.charAt(i) || 'X' == message.charAt(i)){
                 new_message = new_message + (char)(message.charAt(i) - 23);
             }
-            else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z')) {
-                new_message = new_message + (message.charAt(i));
+            else if (message.charAt(i) >= 'a' && message.charAt(i) <= 'z') {
+                new_message = new_message + (char)(message.charAt(i) + 3);
             }
-            else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
-                new_message = new_message + (message.charAt(i));
+            else if (message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
+                new_message = new_message + (char)(message.charAt(i) + 3);
             }
             else {
-                new_message = new_message + (char)(message.charAt(i) + 3);
+                new_message = new_message + (message.charAt(i));
             }
 
         }
@@ -33,14 +33,14 @@ public class Caesar {
             if ('a' == message.charAt(i) || 'b' == message.charAt(i) || 'c' == message.charAt(i) || 'A' == message.charAt(i) || 'B' == message.charAt(i) || 'C' == message.charAt(i)) {
                 new_message = new_message + (char)(message.charAt(i) + 23);
             }
-            else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z' && message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
-                new_message = new_message + (message.charAt(i));
-            }
-            // else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
-                // new_message = new_message + (message.charAt(i));
-            // }
-            else {
+            else if (message.charAt(i) >= 'a' && message.charAt(i) <= 'z') {
                 new_message = new_message + (char)(message.charAt(i) - 3);
+            }
+            else if (message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
+                new_message = new_message + (char)(message.charAt(i) - 3);
+            }
+            else {
+                new_message = new_message + (message.charAt(i));
             }
         }
         return new_message;
@@ -50,19 +50,24 @@ public class Caesar {
     // the String using the given key and returns the encrypted String
     // Ex. encryptCaesarKey("Hello, World!", 5) => "Mjqqt, Btwqi!".
     public static String encryptCaesarKey(String message, int key) {
+        key = key % 26;
+
         String new_message = "";
         for (int i = 0; i < message.length(); i++) {
-            if ((char)('z' - key) <= message.charAt(i) && ('z') >= message.charAt(i)) {
-                new_message = new_message + (char) (message.charAt(i) - (26 - key));
+            if ((char)('z' - key) < message.charAt(i) && ('z') >= message.charAt(i)) {
+                new_message = new_message + (char)(message.charAt(i) - (26 - key));
             }
-            else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z')) {
-                new_message = new_message + (message.charAt(i));
+            else if ((char)('Z' - key) < message.charAt(i) && ('Z') >= message.charAt(i)) {
+                    new_message = new_message + (char)(message.charAt(i) - (26 - key));
             }
-            else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
-                new_message = new_message + (message.charAt(i));
+            else if (message.charAt(i) >= 'a' && message.charAt(i) <= 'z') {
+                new_message = new_message + (char)(message.charAt(i) + key);
+            }
+            else if (message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
+                new_message = new_message + (char)(message.charAt(i) + key);
             }
             else {
-                new_message = new_message + (char) (message.charAt(i) + key);
+                new_message = new_message + (message.charAt(i));
             }
         }
         return new_message;
@@ -73,18 +78,23 @@ public class Caesar {
     // Ex. decryptCaesarKey("Mjqqt, Btwqi!", 5) => "Hello, World!"
     public static String decryptCaesarKey(String message, int key) {
             String new_message = "";
+            key = key % 26;
+
             for (int i = 0; i < message.length(); i++) {
-                if ((char)('a' + key) <= message.charAt(i) && ('a') >= message.charAt(i)) {
-                    new_message = new_message + (char)(message.charAt(i) - (26 - key));
+                if ((char)('a' + key) > message.charAt(i) && ('a') <= message.charAt(i)) {
+                    new_message = new_message + (char)(message.charAt(i) + (26 - key));
                 }
-                else if (!(message.charAt(i) <= 'a' && message.charAt(i) >= 'z')) {
-                    new_message = new_message + (message.charAt(i));
+                else if ((char)('A' + key) > message.charAt(i) && ('A') <= message.charAt(i)) {
+                    new_message = new_message + (char)(message.charAt(i) + (26 - key));
                 }
-                else if (!(message.charAt(i) <= 'A' && message.charAt(i) >= 'Z')) {
-                    new_message = new_message + (message.charAt(i));
+                else if (message.charAt(i) >= 'a' && message.charAt(i) <= 'z') {
+                    new_message = new_message + (char)(message.charAt(i) - key);
+                }
+                else if (message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
+                    new_message = new_message + (char)(message.charAt(i) - key);
                 }
                 else {
-                    new_message = new_message + (char)(message.charAt(i) - key);
+                    new_message = new_message + (message.charAt(i));
                 }
         }
 
