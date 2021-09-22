@@ -46,7 +46,7 @@ public class Vigenere {
 
             new_message = new_message + (encryptCaesarLetter(message.charAt(i), holder));
 
-            if (message.charAt(KeyIndex) >= 'a' && message.charAt(KeyIndex) <= 'z' || message.charAt(KeyIndex) >= 'A' && message.charAt(KeyIndex) <= 'Z') {
+            if (message.charAt(i) >= 'a' && message.charAt(i) <= 'z' || message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
                 KeyIndex++;
             }
             if (KeyIndex == key.length()) {
@@ -66,7 +66,7 @@ public class Vigenere {
 
             new_message = new_message + (decryptCaesarLetter(message.charAt(i), holder));
 
-            if (message.charAt(keyindex) >= 'a' && message.charAt(keyindex) <= 'z' || message.charAt(keyindex) >= 'A' && message.charAt(keyindex) <= 'Z') {
+            if (message.charAt(i) >= 'a' && message.charAt(i) <= 'z' || message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
                 keyindex++;
             }
             if (keyindex >= key.length()) {
